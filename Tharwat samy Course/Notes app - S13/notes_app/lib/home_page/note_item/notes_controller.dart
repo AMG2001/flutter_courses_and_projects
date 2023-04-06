@@ -10,11 +10,13 @@ class NotesController extends GetxController {
       {required String title,
       required String description,
       required Color backgroundColor}) {
-    notesList.add(NoteItem(
-        noteTitle: title,
-        noteDescription: description,
-        noteBackgroundColor: backgroundColor,
-        noteDate: DateFormat.yMMMd().format(DateTime.now())));
+    notesList.add(
+      NoteItem(
+          noteTitle: title,
+          noteDescription: description,
+          noteBackgroundColor: backgroundColor,
+          noteDate: DateFormat.yMMMd().format(DateTime.now())),
+    );
     update();
   }
 
