@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:notes_app/config/device_dimensions.dart';
+import 'package:notes_app/home_page/note_item/note_item_components/delete_note_button.dart';
 
 class NoteItem extends StatelessWidget {
   String noteTitle;
@@ -34,14 +35,7 @@ class NoteItem extends StatelessWidget {
                     noteTitle,
                     style: TextStyle(fontSize: 24),
                   ),
-                  IconButton(
-                    onPressed: () {},
-                    icon: Icon(
-                      Icons.delete,
-                      color: Colors.black,
-                      size: 32,
-                    ),
-                  ),
+                 DeleteNoteButton()
                 ],
               ),
               Row(
