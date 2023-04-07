@@ -5,6 +5,7 @@ import 'package:notes_app/home_page/home_page_components/home_page_floating_acti
 import 'package:get/get.dart';
 import 'package:flutter_swipe_action_cell/flutter_swipe_action_cell.dart';
 import 'package:notes_app/home_page/note_item/notes_controller.dart';
+import 'package:notes_app/services/audio_player_controller.dart';
 
 class HomePage extends StatelessWidget {
   HomePage({super.key});
@@ -50,9 +51,10 @@ class HomePage extends StatelessWidget {
                             SwipeAction(
                                 widthSpace: DeviceDimensions.width * .23,
                                 performsFirstActionWithFullSwipe: true,
-                                title: "Archive",
+                                title: "Done",
                                 onTap: (CompletionHandler handler) async {
-                                  controller.deleteNote(index);
+                                  AudioPlayerController.instance
+                                      .playSuccessSound();
                                 },
                                 color: Colors.green),
                           ],
@@ -64,6 +66,8 @@ class HomePage extends StatelessWidget {
                                 title: "delete",
                                 onTap: (CompletionHandler handler) async {
                                   controller.deleteNote(index);
+                                  AudioPlayerController.instance
+                                      .playFailSound();
                                 },
                                 color: Colors.red),
                           ],
