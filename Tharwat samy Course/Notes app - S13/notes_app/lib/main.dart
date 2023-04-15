@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:notes_app/config/device_dimensions.dart';
 import 'package:notes_app/pages/home_page/home_page.dart';
-void main() {
+import 'package:hive_flutter/hive_flutter.dart';
+void main() async{
+  await Hive.initFlutter();
   runApp(NotesApp());
 }
 

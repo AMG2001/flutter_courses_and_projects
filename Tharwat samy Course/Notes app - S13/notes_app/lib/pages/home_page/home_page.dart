@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:notes_app/config/device_dimensions.dart';
 import 'package:notes_app/controllers/note_controller.dart';
-import 'package:notes_app/pages/edit_note_page/edit_note_page.dart';
 import 'package:notes_app/pages/home_page/home_page_components/home_page_app_bar.dart';
 import 'package:notes_app/pages/home_page/home_page_components/home_page_floating_action_button.dart';
 import 'package:get/get.dart';
@@ -67,9 +66,8 @@ class HomePage extends StatelessWidget {
                                 widthSpace: DeviceDimensions.width * .2,
                                 title: "Edit",
                                 onTap: (CompletionHandler handler) async {
-                                  // Get.to(EditNotePage(comingNoteIndex: index));
-                                  AudioPlayerController.instance
-                                      .playFailSound();
+                                  // AudioPlayerController.instance
+                                  //     .playFailSound();
                                   notesController.moveToEditPageWithIndex(
                                       editNoteInIndex: index);
                                 },
