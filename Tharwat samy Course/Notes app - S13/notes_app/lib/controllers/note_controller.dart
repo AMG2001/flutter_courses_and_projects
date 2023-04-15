@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:intl/intl.dart';
+import 'package:notes_app/pages/edit_note_page/edit_note_page.dart';
 import 'package:notes_app/pages/home_page/bottom_sheet_view/color_circle.dart';
 import 'package:notes_app/pages/home_page/note_item/note_item.dart';
 
@@ -31,6 +32,18 @@ class NotesController extends GetxController {
     );
   }
 
+  void updateNoteAtIndex(
+      {required int index,
+      required String noteTitle,
+      required String noteDescription}) {
+    list_notes[index] = NoteItem(
+        noteTitle: noteTitle,
+        noteDescription: noteDescription,
+        noteBackgroundColor: list_notes[index].noteBackgroundColor,
+        noteDate: list_notes[index].noteDate);
+    update();
+  }
+
   void selectColor({required int choosenColorIndex}) {
     if (choosenColorIndex == lastChoosenColorIndex)
       return;
@@ -41,11 +54,14 @@ class NotesController extends GetxController {
       );
       defaultNoteBackgroundColor =
           noteColorsPalleteList[choosenColorIndex].circleColor;
-
       lastChoosenColorIndex = choosenColorIndex;
       print('choosen index : ${choosenColorIndex}');
       update();
     }
+  }
+
+  void moveToEditPageWithIndex({required int editNoteInIndex}) {
+    Get.to(() => EditNotePage(editNoteIndex: editNoteInIndex));
   }
 
   void addNewNote(

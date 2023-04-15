@@ -28,7 +28,7 @@ class HomePage extends StatelessWidget {
                   return Center(
                     child: Column(
                       mainAxisSize: MainAxisSize.min,
-                      children: [
+                      children: const [
                         Icon(
                           Icons.layers_clear_outlined,
                           size: 36,
@@ -60,7 +60,8 @@ class HomePage extends StatelessWidget {
                                 },
                                 color: Colors.green),
                           ],
-                          key: Key(notesController.list_notes[index].toString()),
+                          key:
+                              Key(notesController.list_notes[index].toString()),
                           trailingActions: <SwipeAction>[
                             SwipeAction(
                                 widthSpace: DeviceDimensions.width * .2,
@@ -69,6 +70,8 @@ class HomePage extends StatelessWidget {
                                   // Get.to(EditNotePage(comingNoteIndex: index));
                                   AudioPlayerController.instance
                                       .playFailSound();
+                                  notesController.moveToEditPageWithIndex(
+                                      editNoteInIndex: index);
                                 },
                                 color: Colors.red),
                           ],
