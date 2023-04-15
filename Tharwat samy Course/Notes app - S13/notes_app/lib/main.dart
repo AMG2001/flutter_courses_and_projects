@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:notes_app/config/device_dimensions.dart';
-import 'package:notes_app/home_page/home_page.dart';
-
+import 'package:notes_app/pages/home_page/home_page.dart';
 void main() {
   runApp(NotesApp());
 }
