@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:notes_app/pages/home_page/home_page.dart';
-import 'package:hive_flutter/hive_flutter.dart';
-void main() async{
-  await Hive.initFlutter();
+import 'package:notes_app/services/boxes/notes_box.dart';
+
+void main() async {
+  // initialize Hive and open Notes Box .
+  await NotesBox.instance.initNotesBox();
   runApp(NotesApp());
 }
 

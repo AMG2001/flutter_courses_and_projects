@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:notes_app/config/device_dimensions.dart';
-import 'package:notes_app/controllers/note_controller.dart';
+import 'package:notes_app/controllers/notes_controller.dart';
 import 'package:notes_app/pages/home_page/home_page_components/home_page_app_bar.dart';
 import 'package:notes_app/pages/home_page/home_page_components/home_page_floating_action_button.dart';
 import 'package:get/get.dart';
@@ -23,6 +23,7 @@ class HomePage extends StatelessWidget {
           child: GetBuilder<NotesController>(
               init: NotesController(),
               builder: (notesController) {
+                // if there is no Notes , show no notes message .
                 if (notesController.list_notes.isEmpty) {
                   return Center(
                     child: Column(
@@ -43,9 +44,14 @@ class HomePage extends StatelessWidget {
                     ),
                   );
                 } else
+                // else , this mean there is Notes Stored , start to show it .
                   return ListView.builder(
                     itemCount: notesController.list_notes.length,
                     itemBuilder: (context, index) {
+                      /**
+                       * Create Swip Cell "Note" with 2 Actions 
+                       * 1.
+                       */
                       return SwipeActionCell(
                           closeWhenScrolling: true,
                           leadingActions: [

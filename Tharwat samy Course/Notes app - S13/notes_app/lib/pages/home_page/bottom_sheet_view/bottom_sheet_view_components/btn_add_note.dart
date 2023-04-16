@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:notes_app/controllers/note_controller.dart';
+import 'package:notes_app/controllers/notes_controller.dart';
 import 'package:notes_app/pages/home_page/bottom_sheet_view/bottom_sheet_view.dart';
 
 class AddNoteButton extends StatelessWidget {
