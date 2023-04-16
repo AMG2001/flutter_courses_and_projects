@@ -2,7 +2,7 @@ import 'package:hive_flutter/hive_flutter.dart';
 import 'package:notes_app/controllers/note_model.dart';
 
 class NotesBox {
-  late Box notesBox;
+  late Box box_notes;
 
   String _key_boxName = "notes_box";
 
@@ -15,6 +15,14 @@ class NotesBox {
   Future<void> initNotesBox() async {
     await Hive.initFlutter();
     Hive.registerAdapter(NoteModelAdapter());
-    notesBox = await Hive.openBox(_key_boxName);
+    box_notes = await Hive.openBox<NoteModel>(_key_boxName);
+  }
+
+  Future<void> addNote({required NoteModel noteModel}) async {
+    try {
+      await box_notes.add(noteModel);
+    } catch (e) {
+      print('error while adding note in NotesBox File , addNote method');
+    }
   }
 }
