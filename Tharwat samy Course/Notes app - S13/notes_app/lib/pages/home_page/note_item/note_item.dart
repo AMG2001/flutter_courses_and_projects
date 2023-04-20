@@ -6,8 +6,11 @@ class NoteItem extends StatelessWidget {
   String noteDescription;
   String noteDate;
   Color? noteBackgroundColor;
+  late int note_id;
+
   NoteItem(
-      {required this.noteTitle,
+      {required this.note_id,
+      required this.noteTitle,
       required this.noteDescription,
       required this.noteBackgroundColor,
       required this.noteDate});

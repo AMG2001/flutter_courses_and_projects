@@ -1,16 +1,25 @@
 import 'package:flutter/material.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 
-part 'note_model.g.dart';
+class NoteDataModel {
+  late String note_title;
 
-@HiveType(typeId: 0)
-class NoteModel {
-  @HiveField(0)
-  late String noteTitle;
-  @HiveField(1)
-  late String noteDescription;
-  @HiveField(2)
-  late String noteDate;
-  @HiveField(3)
-  late Color noteBackgroundColor;
+  late String note_description;
+
+  late String note_date;
+
+  late Color note_color;
+
+  late int note_color_value;
+
+  late int note_id;
+
+  NoteDataModel(
+      {required this.note_id,
+      required this.note_title,
+      required this.note_description,
+      required this.note_date,
+      required this.note_color,
+      required this.note_color_value});
+
 }

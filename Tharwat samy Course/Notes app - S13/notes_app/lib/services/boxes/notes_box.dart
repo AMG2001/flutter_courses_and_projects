@@ -1,5 +1,6 @@
 import 'package:flutter/widgets.dart';
 import 'package:hive_flutter/hive_flutter.dart';
+import 'package:notes_app/pages/home_page/note_item/note_item.dart';
 
 class NotesBox {
   late Box box_notes;
@@ -40,18 +41,16 @@ class NotesBox {
     }
   }
 
-  List<Map<String, dynamic>> getAllNotesList() {
-    final data = box_notes.keys.map((key) {
-      Map<String, dynamic> item = box_notes.get(key);
-      return {
-        _key_id: key,
-        _key_noteTitle: item[_key_noteTitle],
-        _key_note_date_and_time:item[_key_note_date_and_time],
-        _key_noteDescription: item[_key_noteDescription],
-        _key_color_value: item[_key_color_value]
-      };
+  List<NoteItem> getAllNotesList() {
+    final list_of_notes_items = box_notes.keys.map((key) {
+      Map<dynamic, dynamic> item = box_notes.get(key);
+      return NoteItem(
+          note_id: key,
+          noteTitle: item[_key_noteTitle],
+          noteDescription: item[_key_noteDescription],
+          noteBackgroundColor: Color(item[_key_color_value]),
+          noteDate: item[_key_note_date_and_time]);
     }).toList();
-    print(data);
-    return data;
+    return list_of_notes_items;
   }
 }

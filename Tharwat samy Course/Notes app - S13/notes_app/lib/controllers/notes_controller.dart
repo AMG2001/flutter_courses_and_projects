@@ -24,6 +24,7 @@ class NotesController extends GetxController {
   ];
 
   NotesController() {
+    list_notes = NotesBox.instance.getAllNotesList();
     defaultChoosenColorIndex = noteColorsPalleteList[0].index;
     defaultNoteBackgroundColor = noteColorsPalleteList[0].circleColor;
     lastChoosenColorIndex = noteColorsPalleteList[0].index;
@@ -38,6 +39,7 @@ class NotesController extends GetxController {
       required String noteTitle,
       required String noteDescription}) {
     list_notes[index] = NoteItem(
+        note_id: index,
         noteTitle: noteTitle,
         noteDescription: noteDescription,
         noteBackgroundColor: list_notes[index].noteBackgroundColor,
@@ -68,25 +70,14 @@ class NotesController extends GetxController {
   void addNewNote(
       {required String noteTitle,
       required String noteDescription,
-      required Color noteBackgroundColor}) {
-    list_notes.add(
-      NoteItem(
-        noteTitle: noteTitle,
-        noteDescription: noteDescription,
-        noteBackgroundColor: noteBackgroundColor,
-        noteDate: DateFormat.MMMEd().format(
-          DateTime.now(),
-        ),
-      ),
-    );
-
-    NotesBox.instance.addNewNote(
+      required Color noteBackgroundColor}) async {
+    await NotesBox.instance.addNewNote(
       noteTitle: noteTitle,
       noteDescription: noteDescription,
       note_color_value: noteBackgroundColor.value,
       note_date_and_time: DateFormat.MMMEd().format(DateTime.now()),
     );
-    NotesBox.instance.getAllNotesList();
+    list_notes = NotesBox.instance.getAllNotesList();
     update();
   }
 
