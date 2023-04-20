@@ -53,4 +53,23 @@ class NotesBox {
     }).toList();
     return list_of_notes_items;
   }
+
+  void deleteNote({required int note_id}) {
+    box_notes.deleteAt(note_id);
+  }
+
+  void updateNoteAtIndex(
+      {required int note_id,
+      required String noteTitle,
+      required String noteDescription,
+      required String note_date_and_time,
+      required int note_color_value}) async {
+    Map<String, dynamic> note_in_map = {
+      _key_note_date_and_time: note_date_and_time,
+      _key_noteTitle: noteTitle,
+      _key_noteDescription: noteDescription,
+      _key_color_value: note_color_value
+    };
+    await box_notes.putAt(note_id, note_in_map);
+  }
 }

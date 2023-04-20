@@ -38,12 +38,13 @@ class NotesController extends GetxController {
       {required int index,
       required String noteTitle,
       required String noteDescription}) {
-    list_notes[index] = NoteItem(
+    NotesBox.instance.updateNoteAtIndex(
         note_id: index,
         noteTitle: noteTitle,
         noteDescription: noteDescription,
-        noteBackgroundColor: list_notes[index].noteBackgroundColor,
-        noteDate: list_notes[index].noteDate);
+        note_date_and_time: list_notes[index].noteDate,
+        note_color_value: list_notes[index].noteBackgroundColor!.value);
+    list_notes = NotesBox.instance.getAllNotesList();
     update();
   }
 
@@ -82,7 +83,8 @@ class NotesController extends GetxController {
   }
 
   void deleteNote({required int note_index}) {
-    list_notes.removeAt(note_index);
+    NotesBox.instance.deleteNote(note_id: note_index);
+    list_notes = NotesBox.instance.getAllNotesList();
     update();
   }
 }
