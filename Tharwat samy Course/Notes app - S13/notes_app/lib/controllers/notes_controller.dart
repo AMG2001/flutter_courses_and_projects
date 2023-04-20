@@ -4,6 +4,7 @@ import 'package:intl/intl.dart';
 import 'package:notes_app/pages/edit_note_page/edit_note_page.dart';
 import 'package:notes_app/pages/home_page/bottom_sheet_view/color_circle.dart';
 import 'package:notes_app/pages/home_page/note_item/note_item.dart';
+import 'package:notes_app/services/boxes/notes_box.dart';
 
 class NotesController extends GetxController {
   late int defaultChoosenColorIndex = 0;
@@ -78,6 +79,14 @@ class NotesController extends GetxController {
         ),
       ),
     );
+
+    NotesBox.instance.addNewNote(
+      noteTitle: noteTitle,
+      noteDescription: noteDescription,
+      note_color_value: noteBackgroundColor.value,
+      note_date_and_time: DateFormat.MMMEd().format(DateTime.now()),
+    );
+    NotesBox.instance.getAllNotesList();
     update();
   }
 
