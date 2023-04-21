@@ -44,7 +44,7 @@ class HomePage extends StatelessWidget {
                     ),
                   );
                 } else
-                // else , this mean there is Notes Stored , start to show it .
+                  // else , this mean there is Notes Stored , start to show it .
                   return ListView.builder(
                     itemCount: notesController.list_notes.length,
                     itemBuilder: (context, index) {
@@ -52,34 +52,42 @@ class HomePage extends StatelessWidget {
                        * Create Swip Cell "Note" with 2 Actions 
                        * 1.
                        */
-                      return SwipeActionCell(
-                          closeWhenScrolling: true,
-                          leadingActions: [
-                            SwipeAction(
-                                widthSpace: DeviceDimensions.width * .23,
-                                title: "Done",
-                                onTap: (CompletionHandler handler) async {
-                                  AudioPlayerController.instance
-                                      .playSuccessSound();
-                                  notesController.deleteNote(note_index: index);
-                                },
-                                color: Colors.green),
-                          ],
-                          key:
-                              Key(notesController.list_notes[index].toString()),
-                          trailingActions: <SwipeAction>[
-                            SwipeAction(
-                                widthSpace: DeviceDimensions.width * .2,
-                                title: "Edit",
-                                onTap: (CompletionHandler handler) async {
-                                  // AudioPlayerController.instance
-                                  //     .playFailSound();
-                                  notesController.moveToEditPageWithIndex(
-                                      editNoteInIndex: index);
-                                },
-                                color: Colors.red),
-                          ],
-                          child: notesController.list_notes[index]);
+                      return Column(
+                        children: [
+                          SwipeActionCell(
+                              closeWhenScrolling: true,
+                              leadingActions: [
+                                SwipeAction(
+                                    widthSpace: DeviceDimensions.width * .23,
+                                    title: "Done",
+                                    onTap: (CompletionHandler handler) async {
+                                      AudioPlayerController.instance
+                                          .playSuccessSound();
+                                      notesController.deleteNote(
+                                          note_index: index);
+                                    },
+                                    color: Colors.green),
+                              ],
+                              key: Key(
+                                  notesController.list_notes[index].toString()),
+                              trailingActions: <SwipeAction>[
+                                SwipeAction(
+                                    widthSpace: DeviceDimensions.width * .2,
+                                    title: "Edit",
+                                    onTap: (CompletionHandler handler) async {
+                                      // AudioPlayerController.instance
+                                      //     .playFailSound();
+                                      notesController.moveToEditPageWithIndex(
+                                          editNoteInIndex: index);
+                                    },
+                                    color: Colors.red),
+                              ],
+                              child: notesController.list_notes[index]),
+                          SizedBox(
+                            height: 18,
+                          )
+                        ],
+                      );
                     },
                   );
               }),

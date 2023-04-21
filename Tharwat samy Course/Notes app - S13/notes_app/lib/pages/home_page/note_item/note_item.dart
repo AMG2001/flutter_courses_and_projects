@@ -20,7 +20,6 @@ class NoteItem extends StatelessWidget {
     return Stack(
       children: [
         Container(
-          margin: EdgeInsets.only(bottom: 18),
           width: DeviceDimensions.width,
           height: DeviceDimensions.height * .22,
           padding: EdgeInsets.all(32),
