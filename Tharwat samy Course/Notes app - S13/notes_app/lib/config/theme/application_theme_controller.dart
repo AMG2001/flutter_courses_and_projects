@@ -33,7 +33,7 @@ class ApplicationThemeController extends GetxController {
      */
     applicationThemeBox = await Hive.openBox(_key_applicatioThemeBox);
     isDark = applicationThemeBox.get(_key_isDarkBool, defaultValue: false);
-    
+
     if (isDark == false)
       currentTheme = ApplicationTheme.applicationLightTheme;
     else
@@ -44,7 +44,7 @@ class ApplicationThemeController extends GetxController {
 /**
  * change the theme of the application
  */
-  Future<void> changeApplicationTheme({required bool newValue}) async {
+  Future<ThemeData> changeApplicationTheme({required bool newValue}) async {
     /**
      * change value of currentTheme that stored in SharedPref .
      */
@@ -55,6 +55,8 @@ class ApplicationThemeController extends GetxController {
       currentTheme = ApplicationTheme.applicationDarkTheme;
     else
       currentTheme = ApplicationTheme.applicationLightTheme;
+
+    return currentTheme;
     update();
   }
 }

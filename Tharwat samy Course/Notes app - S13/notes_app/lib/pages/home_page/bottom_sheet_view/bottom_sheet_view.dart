@@ -23,7 +23,7 @@ void BottomSheetView(
     ),
     isScrollControlled: true,
     backgroundColor: ApplicationThemeController.instance.isDark
-        ? Colors.black38
+        ? Colors.black
         : Colors.white,
     barrierColor: Colors.black.withOpacity(.5),
     context: context,

@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:notes_app/config/device_dimensions.dart';
-import 'package:notes_app/pages/home_page/bottom_sheet_view/bottom_sheet_view.dart';
 import 'package:notes_app/pages/home_page/bottom_sheet_view/bottom_sheet_view_components/note_description_tf.dart';
 import 'package:notes_app/pages/home_page/bottom_sheet_view/bottom_sheet_view_components/note_title_tf.dart';
 import 'package:notes_app/controllers/notes_controller.dart';
