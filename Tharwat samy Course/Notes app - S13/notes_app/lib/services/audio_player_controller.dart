@@ -13,10 +13,10 @@ class AudioPlayerController {
   final player = AudioPlayer();
 
   void playSuccessSound() async {
-    await player.play(AssetSource('success_audio.mp3'));
+    await player.play(AssetSource('audios/success_audio.mp3'));
   }
 
   void playFailSound() async {
-    await player.play(AssetSource('fail_audio.mp3'));
+    await player.play(AssetSource('audios/fail_audio.mp3'));
   }
 }

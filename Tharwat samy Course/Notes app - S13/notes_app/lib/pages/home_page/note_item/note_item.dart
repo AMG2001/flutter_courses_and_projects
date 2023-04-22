@@ -100,7 +100,7 @@ class NoteItem extends StatelessWidget {
               borderRadius: BorderRadius.only(
                   topLeft: Radius.circular(12),
                   bottomLeft: Radius.circular(12)),
-              color: Colors.green.withOpacity(.5),
+              color: Colors.green,
             ),
           ),
         ),
@@ -127,7 +127,7 @@ class NoteItem extends StatelessWidget {
               borderRadius: BorderRadius.only(
                   topLeft: Radius.circular(12),
                   bottomLeft: Radius.circular(12)),
-              color: Colors.red.withOpacity(.5),
+              color: Colors.red,
             ),
           ),
         ),
