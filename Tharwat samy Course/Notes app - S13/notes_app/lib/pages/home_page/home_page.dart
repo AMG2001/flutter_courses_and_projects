@@ -69,7 +69,7 @@ class HomePage extends StatelessWidget {
                                     color: Colors.green),
                               ],
                               key: Key(
-                                  notesController.list_notes[index].toString()),
+                                  '${notesController.list_notes[index].toString() + DateTime.now().microsecond.toString()}'),
                               trailingActions: <SwipeAction>[
                                 SwipeAction(
                                     widthSpace: DeviceDimensions.width * .2,
