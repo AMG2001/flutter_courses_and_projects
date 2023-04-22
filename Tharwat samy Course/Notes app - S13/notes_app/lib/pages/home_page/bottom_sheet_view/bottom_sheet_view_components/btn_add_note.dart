@@ -21,7 +21,7 @@ class AddNoteButton extends StatelessWidget {
             EdgeInsets.symmetric(vertical: 4, horizontal: 16),
           ),
           backgroundColor: MaterialStateProperty.all<Color>(
-            Colors.white.withOpacity(0.1),
+            Color(0xffe36414),
           ),
         ),
         onPressed: () {
@@ -34,7 +34,19 @@ class AddNoteButton extends StatelessWidget {
             Get.back();
           }
         },
-        child: Text("Add Note"),
+        child: Row(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            Text(
+              "Add Note",
+              style: TextStyle(fontWeight: FontWeight.w500),
+            ),
+            SizedBox(
+              width: 8,
+            ),
+            Icon(Icons.add_circle_outline)
+          ],
+        ),
       );
     });
   }

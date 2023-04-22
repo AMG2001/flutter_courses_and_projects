@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:notes_app/config/device_dimensions.dart';
+import 'package:notes_app/config/theme/application_theme_controller.dart';
 import 'package:notes_app/controllers/notes_controller.dart';
 import 'package:notes_app/pages/home_page/home_page_components/home_page_app_bar.dart';
 import 'package:notes_app/pages/home_page/home_page_components/home_page_floating_action_button.dart';
@@ -16,7 +17,7 @@ class HomePage extends StatelessWidget {
       floatingActionButton: HomePageFloatingActionButton(),
       appBar: homePageAppBar,
       body: Padding(
-        padding: const EdgeInsets.all(16.0),
+        padding: const EdgeInsets.only(top: 8, right: 16, left: 16),
         child: Container(
           width: DeviceDimensions.width,
           height: DeviceDimensions.height,
@@ -28,17 +29,25 @@ class HomePage extends StatelessWidget {
                   return Center(
                     child: Column(
                       mainAxisSize: MainAxisSize.min,
-                      children: const [
+                      children: [
                         Icon(
                           Icons.layers_clear_outlined,
                           size: 36,
+                          color: ApplicationThemeController.instance.isDark
+                              ? Colors.white
+                              : Colors.black,
                         ),
                         SizedBox(
                           height: 22,
                         ),
                         Text(
                           "your notes list is empty",
-                          style: TextStyle(fontSize: 22),
+                          style: TextStyle(
+                            fontSize: 22,
+                            color: ApplicationThemeController.instance.isDark
+                                ? Colors.white
+                                : Colors.black,
+                          ),
                         )
                       ],
                     ),
@@ -49,9 +58,9 @@ class HomePage extends StatelessWidget {
                     itemCount: notesController.list_notes.length,
                     itemBuilder: (context, index) {
                       /**
-                       * Create Swip Cell "Note" with 2 Actions 
-                       * 1.
-                       */
+                           * Create Swip Cell "Note" with 2 Actions 
+                           * 1.
+                           */
                       return Column(
                         children: [
                           SwipeActionCell(
@@ -75,8 +84,6 @@ class HomePage extends StatelessWidget {
                                     widthSpace: DeviceDimensions.width * .2,
                                     title: "Edit",
                                     onTap: (CompletionHandler handler) async {
-                                      // AudioPlayerController.instance
-                                      //     .playFailSound();
                                       notesController.moveToEditPageWithIndex(
                                           editNoteInIndex: index);
                                     },

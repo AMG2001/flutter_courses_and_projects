@@ -51,9 +51,6 @@ class EditNotePage extends StatelessWidget {
                       padding: MaterialStateProperty.all<EdgeInsets>(
                         EdgeInsets.symmetric(vertical: 4, horizontal: 16),
                       ),
-                      backgroundColor: MaterialStateProperty.all<Color>(
-                        Colors.white.withOpacity(0.1),
-                      ),
                     ),
                     onPressed: () {
                       if (formKey.currentState!.validate()) {
@@ -64,7 +61,19 @@ class EditNotePage extends StatelessWidget {
                         Get.back();
                       }
                     },
-                    child: Text("Update Note"),
+                    child: Row(
+                      mainAxisSize: MainAxisSize.min,
+                      children: [
+                        Text(
+                          "Update Note",
+                          style: TextStyle(fontWeight: FontWeight.w500),
+                        ),
+                        SizedBox(
+                          width: 8,
+                        ),
+                        Icon(Icons.mode_edit_outline_outlined)
+                      ],
+                    ),
                   ),
                 ]),
               ),

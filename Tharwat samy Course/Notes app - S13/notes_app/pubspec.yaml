@@ -42,7 +42,7 @@ dependencies:
   audioplayers: ^3.0.1
   hive: ^2.2.3
   hive_flutter: ^1.1.0
-
+ 
 
 dev_dependencies:
   build_runner: ^2.3.3
@@ -71,7 +71,6 @@ flutter:
   # To add assets to your application, add an assets section, like this:
   assets:
     - assets/audios/
-    - assets/notes_background/
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware

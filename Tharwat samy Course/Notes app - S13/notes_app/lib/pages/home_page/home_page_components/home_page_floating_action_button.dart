@@ -4,7 +4,6 @@ import 'package:notes_app/pages/home_page/bottom_sheet_view/bottom_sheet_view.da
 import 'package:notes_app/pages/home_page/note_item/note_item.dart';
 
 class HomePageFloatingActionButton extends StatelessWidget {
-
   GlobalKey<FormState> _formKey = GlobalKey<FormState>();
   TextEditingController noteTitleTextEditingController =
       TextEditingController();
@@ -15,13 +14,16 @@ class HomePageFloatingActionButton extends StatelessWidget {
     return FloatingActionButton(
       onPressed: () {
         BottomSheetView(
-          context: context,
+            context: context,
             formKey: _formKey,
             noteDescriptionTextEditingController:
                 noteDescriptionTextEditingController,
             noteTitleTextEditingController: noteTitleTextEditingController);
       },
-      child: const Icon(Icons.add),
+      child: const Icon(
+        Icons.add,
+        color: Colors.white,
+      ),
     );
   }
 }
