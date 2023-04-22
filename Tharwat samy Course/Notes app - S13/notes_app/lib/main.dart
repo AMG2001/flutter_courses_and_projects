@@ -19,14 +19,11 @@ class NotesApp extends StatelessWidget {
     Get.put(NotesController(), permanent: true);
     return GetBuilder<ApplicationThemeController>(
         init: ApplicationThemeController.instance,
-        
         builder: (themeController) {
           return ThemeProvider(
-
             duration: Duration(seconds: 1),
             initTheme: themeController.currentTheme,
             builder: (context, theme) {
-              
               return GetMaterialApp(
                 theme: theme,
                 home: HomePage(),
