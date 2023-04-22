@@ -5,7 +5,6 @@ import 'package:notes_app/pages/home_page/bottom_sheet_view/bottom_sheet_view.da
 
 class ColorCircle extends StatefulWidget {
   ColorCircle({required this.circleColor, required this.index});
-
   Color circleColor;
   int index;
   bool isSelected = false;

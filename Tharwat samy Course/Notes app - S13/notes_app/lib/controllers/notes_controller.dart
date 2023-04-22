@@ -18,9 +18,9 @@ class NotesController extends GetxController {
   List<ColorCircle> noteColorsPalleteList = [
     ColorCircle(circleColor: Color(0xFF231942), index: 0),
     ColorCircle(circleColor: Color(0xFF5e548e), index: 1),
-    ColorCircle(circleColor: Color(0xFF9f86c0), index: 2),
-    ColorCircle(circleColor: Color(0xFFbe95c4), index: 3),
-    ColorCircle(circleColor: Color(0xFFe0b1cb), index: 4),
+    ColorCircle(circleColor: Color(0xFF5f0f40), index: 2),
+    ColorCircle(circleColor: Color(0xFF192a51), index: 3),
+    ColorCircle(circleColor: Color(0xFFfca311), index: 4),
   ];
 
   NotesController() {

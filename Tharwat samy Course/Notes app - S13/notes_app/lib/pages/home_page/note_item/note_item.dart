@@ -20,11 +20,13 @@ class NoteItem extends StatelessWidget {
     return Stack(
       children: [
         Container(
-          margin: EdgeInsets.only(bottom: 18),
           width: DeviceDimensions.width,
           height: DeviceDimensions.height * .22,
           padding: EdgeInsets.all(32),
           decoration: BoxDecoration(
+              // image: DecorationImage(
+              //     image: AssetImage('assets/notes_background/mesh-757.png'),
+              //     fit: BoxFit.cover),
               color: noteBackgroundColor,
               borderRadius: BorderRadius.circular(16)),
           child: Row(
