@@ -3,17 +3,23 @@ import 'package:notes_app/config/device_dimensions.dart';
 import 'package:notes_app/config/theme/application_theme_controller.dart';
 import 'package:notes_app/controllers/notes_controller.dart';
 import 'package:notes_app/pages/home_page/bottom_sheet_view/bottom_sheet_view_components/btn_add_note.dart';
+import 'package:notes_app/pages/home_page/bottom_sheet_view/bottom_sheet_view_components/date_time_tf.dart';
 import 'package:notes_app/pages/home_page/bottom_sheet_view/bottom_sheet_view_components/grey_header_container.dart';
 import 'package:notes_app/pages/home_page/bottom_sheet_view/bottom_sheet_view_components/note_description_tf.dart';
 import 'package:notes_app/pages/home_page/bottom_sheet_view/bottom_sheet_view_components/note_title_tf.dart';
 import 'package:notes_app/pages/home_page/note_item/note_item.dart';
 import 'package:get/get.dart';
 
-void BottomSheetView(
-    {required BuildContext context,
-    required GlobalKey<FormState> formKey,
-    required TextEditingController noteTitleTextEditingController,
-    required TextEditingController noteDescriptionTextEditingController}) {
+void BottomSheetView({
+  required BuildContext context,
+  required GlobalKey<FormState> formKey,
+}) {
+  NoteDescriptionTextField noteDescriptionTextField =
+      NoteDescriptionTextField();
+
+  NoteDateTextField noteDateTextField = NoteDateTextField();
+
+  NoteTitleTextField noteTitleTextField = NoteTitleTextField();
   showModalBottomSheet(
     shape: RoundedRectangleBorder(
       borderRadius: BorderRadius.only(
@@ -39,18 +45,30 @@ void BottomSheetView(
               child: Column(
                 children: [
                   GreyHeaderContainer(),
-                  NoteTitleTextField(
-                      noteTitleTextEditingController:
-                          noteTitleTextEditingController),
-                  SizedBox(
+                  /*
+                  ************************* Note Title TF *****************************
+                  */
+                  noteTitleTextField,
+                  const SizedBox(
                     height: 24,
                   ),
-                  NoteDescriptionTextField(
-                      noteDescriptionTextEditingController:
-                          noteDescriptionTextEditingController),
-                  SizedBox(
+                  /*
+                  ************************* Note Description TF *****************************
+                  */
+                  noteDescriptionTextField,
+                  const SizedBox(
                     height: 24,
                   ),
+                  /*
+                  ************************* Note Date TF *****************************
+                  */
+                  noteDateTextField,
+                  const SizedBox(
+                    height: 24,
+                  ),
+                  /*
+                  ************************* Row of Notes background Colors *****************************
+                  */
                   Row(
                     children: [
                       Text(
@@ -60,38 +78,36 @@ void BottomSheetView(
                                 ? Colors.white
                                 : Colors.black),
                       ),
-                      SizedBox(
+                      const SizedBox(
                         width: 14,
                       ),
-                      GetBuilder<NotesController>(
-                          init: NotesController(),
-                          builder: (notesController) {
-                            return Container(
-                              height: 25,
-                              width: DeviceDimensions.width * .5,
-                              child: ListView.builder(
-                                shrinkWrap: true,
-                                itemCount: notesController
-                                    .noteColorsPalleteList.length,
-                                itemBuilder: (context, index) {
-                                  return notesController
-                                      .noteColorsPalleteList[index];
-                                },
-                                scrollDirection: Axis.horizontal,
-                              ),
-                            );
-                          }),
+                      GetBuilder<NotesController>(builder: (notesController) {
+                        return Container(
+                          height: 25,
+                          width: DeviceDimensions.width * .5,
+                          child: ListView.builder(
+                            shrinkWrap: true,
+                            itemCount:
+                                notesController.noteColorsPalleteList.length,
+                            itemBuilder: (context, index) {
+                              return notesController
+                                  .noteColorsPalleteList[index];
+                            },
+                            scrollDirection: Axis.horizontal,
+                          ),
+                        );
+                      }),
                     ],
                   ),
-                  SizedBox(
+                  const SizedBox(
                     height: 24,
                   ),
                   AddNoteButton(
                     formKey: formKey,
-                    noteTitleTextEditingController:
-                        noteTitleTextEditingController,
-                    noteDescriptionTextEditingController:
-                        noteDescriptionTextEditingController,
+                    noteTitle: noteTitleTextField.get_noteTitleText,
+                    noteDescription:
+                        noteDescriptionTextField.get_noteDescriptionText,
+                    noteDate: noteDateTextField.getChoosenDateInString,
                   )
                 ],
               ),

@@ -22,7 +22,7 @@ class NoteItem extends StatelessWidget {
         Container(
           width: DeviceDimensions.width,
           height: DeviceDimensions.height * .22,
-          padding: EdgeInsets.all(32),
+          padding: const EdgeInsets.all(32),
           decoration: BoxDecoration(
               // image: DecorationImage(
               //     image: AssetImage('assets/notes_background/mesh-757.png'),
@@ -39,8 +39,8 @@ class NoteItem extends StatelessWidget {
                   Row(
                     mainAxisSize: MainAxisSize.min,
                     children: [
-                      Icon(Icons.turned_in_not),
-                      SizedBox(
+                      const Icon(Icons.turned_in_not),
+                      const SizedBox(
                         width: 8,
                       ),
                       Text(
@@ -59,11 +59,11 @@ class NoteItem extends StatelessWidget {
                   ),
                   Row(
                     children: [
-                      Icon(
+                      const Icon(
                         Icons.calendar_month_outlined,
                         size: 24,
                       ),
-                      SizedBox(
+                      const SizedBox(
                         width: 8,
                       ),
                       Text(

@@ -21,7 +21,7 @@ class NotesApp extends StatelessWidget {
         init: ApplicationThemeController.instance,
         builder: (themeController) {
           return ThemeProvider(
-            duration: Duration(seconds: 1),
+            duration: const Duration(seconds: 1),
             initTheme: themeController.currentTheme,
             builder: (context, theme) {
               return GetMaterialApp(

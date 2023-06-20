@@ -45,12 +45,13 @@ class NotesController extends GetxController {
   void updateNoteAtIndex(
       {required int index,
       required String noteTitle,
-      required String noteDescription}) {
+      required String noteDescription,
+      required String noteDate}) {
     NotesBox.instance.updateNoteAtIndex(
         note_id: index,
         noteTitle: noteTitle,
         noteDescription: noteDescription,
-        note_date_and_time: list_notes[index].noteDate,
+        note_date: noteDate,
         note_color_value: list_notes[index].noteBackgroundColor!.value);
     list_notes = NotesBox.instance.getAllNotesList();
     update();
@@ -85,13 +86,13 @@ class NotesController extends GetxController {
   void addNewNote(
       {required String noteTitle,
       required String noteDescription,
+      required String noteDate,
       required Color noteBackgroundColor}) async {
     await NotesBox.instance.addNewNote(
       noteTitle: noteTitle,
       noteDescription: noteDescription,
       note_color_value: noteBackgroundColor.value,
-      note_date_and_time:
-          '${DateFormat.MMMEd().format(DateTime.now())} , Created at : ${DateFormat.jm().format(DateTime.now())}',
+      noteDate: noteDate,
     );
     list_notes = NotesBox.instance.getAllNotesList();
     update();

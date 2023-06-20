@@ -11,7 +11,7 @@ class GreyHeaderContainer extends StatelessWidget {
         color: Colors.grey.withOpacity(0.2),
         borderRadius: BorderRadius.circular(32),
       ),
-      margin: EdgeInsets.only(top: 16, bottom: 32),
+      margin: const EdgeInsets.only(top: 16, bottom: 32),
       width: DeviceDimensions.width * .2,
       height: 6,
     );

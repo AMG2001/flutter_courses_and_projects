@@ -9,7 +9,8 @@ class NotesBox {
   String _key_noteDescription = "note_description";
   String _key_id = 'note_id';
   String _key_color_value = 'note_color_value';
-  String _key_note_date_and_time = 'note_time';
+  String _key_note_date = 'note_date';
+  String _key_note_time = 'note_time';
 
   NotesBox._privateConstructor();
 
@@ -26,10 +27,10 @@ class NotesBox {
   Future<void> addNewNote(
       {required String noteTitle,
       required String noteDescription,
-      required String note_date_and_time,
+      required String noteDate,
       required int note_color_value}) async {
     Map<String, dynamic> note_in_map = {
-      _key_note_date_and_time: note_date_and_time,
+      _key_note_date: noteDate,
       _key_noteTitle: noteTitle,
       _key_noteDescription: noteDescription,
       _key_color_value: note_color_value
@@ -49,7 +50,7 @@ class NotesBox {
           noteTitle: item[_key_noteTitle],
           noteDescription: item[_key_noteDescription],
           noteBackgroundColor: Color(item[_key_color_value]),
-          noteDate: item[_key_note_date_and_time]);
+          noteDate: item[_key_note_date]);
     }).toList();
     return list_of_notes_items;
   }
@@ -62,10 +63,10 @@ class NotesBox {
       {required int note_id,
       required String noteTitle,
       required String noteDescription,
-      required String note_date_and_time,
+      required String note_date,
       required int note_color_value}) async {
     Map<String, dynamic> note_in_map = {
-      _key_note_date_and_time: note_date_and_time,
+      _key_note_date: note_date,
       _key_noteTitle: noteTitle,
       _key_noteDescription: noteDescription,
       _key_color_value: note_color_value

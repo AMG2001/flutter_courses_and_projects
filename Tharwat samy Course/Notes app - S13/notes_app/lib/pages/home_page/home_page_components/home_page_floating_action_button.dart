@@ -5,20 +5,15 @@ import 'package:notes_app/pages/home_page/note_item/note_item.dart';
 
 class HomePageFloatingActionButton extends StatelessWidget {
   GlobalKey<FormState> _formKey = GlobalKey<FormState>();
-  TextEditingController noteTitleTextEditingController =
-      TextEditingController();
-  TextEditingController noteDescriptionTextEditingController =
-      TextEditingController();
+
   @override
   Widget build(BuildContext context) {
     return FloatingActionButton(
       onPressed: () {
         BottomSheetView(
-            context: context,
-            formKey: _formKey,
-            noteDescriptionTextEditingController:
-                noteDescriptionTextEditingController,
-            noteTitleTextEditingController: noteTitleTextEditingController);
+          context: context,
+          formKey: _formKey,
+        );
       },
       child: const Icon(
         Icons.add,

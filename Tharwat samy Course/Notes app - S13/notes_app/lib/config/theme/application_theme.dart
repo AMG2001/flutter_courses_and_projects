@@ -217,6 +217,8 @@ class ApplicationTheme {
       /**
   * -------------------------- AppBar Theme --------------------------
   */
+
+      colorScheme: ColorScheme.fromSeed(seedColor: Color(0xffe36414),),
       appBarTheme: AppBarTheme(
         iconTheme: IconThemeData(color: Colors.black),
         backgroundColor: Colors.white,

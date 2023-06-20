@@ -5,7 +5,7 @@ import 'package:notes_app/config/theme/application_theme.dart';
 import 'package:notes_app/config/theme/application_theme_controller.dart';
 
 final homePageAppBar = AppBar(
-  title: Text(
+  title: const Text(
     "Notes app",
     style: TextStyle(fontSize: 18),
   ),
@@ -20,8 +20,8 @@ final homePageAppBar = AppBar(
                       newValue: !themeController.isDark));
             },
             icon: themeController.isDark
-                ? Icon(Icons.wb_sunny_outlined)
-                : Icon(Icons.nightlight_outlined),
+                ? const Icon(Icons.wb_sunny_outlined)
+                : const Icon(Icons.nightlight_outlined),
           );
         },
       );

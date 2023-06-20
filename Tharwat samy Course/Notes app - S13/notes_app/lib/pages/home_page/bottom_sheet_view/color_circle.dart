@@ -30,7 +30,7 @@ class _ColorCircleState extends State<ColorCircle> {
               });
             },
           ),
-          SizedBox(
+          const SizedBox(
             width: 10,
           )
         ],
