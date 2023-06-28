@@ -1,3 +1,5 @@
+import 'dart:math';
+
 import 'package:flutter/material.dart';
 
 class HomePage extends StatefulWidget {
@@ -7,7 +9,26 @@ class HomePage extends StatefulWidget {
   State<HomePage> createState() => _HomePageState();
 }
 
-class _HomePageState extends State<HomePage> {
+class _HomePageState extends State<HomePage>
+    with SingleTickerProviderStateMixin {
+  late AnimationController _starAnimationController;
+
+  @override
+  void initState() {
+    super.initState();
+    _starAnimationController = AnimationController(
+      vsync: this,
+      duration: Duration(seconds: 2),
+    );
+
+    // is to make animation start only from 0 to 1 .
+    _starAnimationController.forward();
+    // is to make animation start from 1 to 0 only .
+    _starAnimationController.reverse();
+    // to make repeat it self infinity .
+    _starAnimationController.repeat();
+  }
+
   late double height;
   late double width;
 
@@ -23,18 +44,55 @@ class _HomePageState extends State<HomePage> {
         child: Stack(
           children: [
             _backgroundContainer(),
-            _basicButton(),
+            Column(
+              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+              crossAxisAlignment: CrossAxisAlignment.center,
+              mainAxisSize: MainAxisSize.max,
+              children: [_basicButton(), _starIcon()],
+            )
           ],
         ),
       ),
     );
   }
 
+  Widget _starIcon() {
+    return AnimatedBuilder(
+      animation: _starAnimationController.view,
+      builder: (context, child) {
+        return Transform.rotate(
+            /**
+           * _starAnimationController.value will be in degree , but we need raduis not degree 
+           * so with math we make it : _starAnimationController.value * 2 * pi
+           */
+            angle: _starAnimationController.value * 2 * pi,
+            child: child);
+      },
+      child: Icon(
+        Icons.star,
+        color: Colors.white,
+        size: 100,
+      ),
+    );
+  }
+
+  Tween<double> _scaleAnimation = Tween<double>(begin: 0.0, end: 1.0);
+
   Widget _backgroundContainer() {
-    return Container(
-      width: width,
-      height: height,
-      color: Colors.blue,
+    return TweenAnimationBuilder(
+      tween: _scaleAnimation,
+      duration: Duration(milliseconds: 750),
+      builder: (context, value, child) {
+        return Transform.scale(
+          child: child,
+          scale: value,
+        );
+      },
+      child: Container(
+        width: width,
+        height: height,
+        color: Colors.blue,
+      ),
     );
   }
 
