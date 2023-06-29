@@ -4,8 +4,8 @@ import 'package:taskly/home_page_controller.dart';
 import 'package:taskly/task_model.dart';
 
 class HomePage extends StatelessWidget {
-  const HomePage({super.key});
-
+  HomePage({super.key});
+  late Checkbox checkbox;
   @override
   Widget build(BuildContext context) {
     double width = MediaQuery.sizeOf(context).width;
@@ -22,27 +22,10 @@ class HomePage extends StatelessWidget {
       ),
       body: Container(
         child: GetBuilder<HomePageController>(
-          init: HomePageController(),
           builder: (controller) {
             return controller.tasksList.isEmpty
-                ? Center(
-                    child: Text("tasks List is Empty"),
-                  )
-                : ListView.builder(
-                    itemBuilder: (context, index) {
-                      ListTile(
-                        title: Text(controller.tasksList[index].taskName),
-                        subtitle: Text(controller.tasksList[index].taskDate),
-                        trailing: Checkbox(
-                          value: controller.tasksList[index].isDone,
-                          onChanged: (value) {
-                            controller.changeTaskStatus(
-                                newStatus: value!, index: index);
-                          },
-                        ),
-                      );
-                    },
-                  );
+                ? controller.TasksListIsEmpty()
+                : controller.TasksList();
           },
         ),
       ),
@@ -59,8 +42,8 @@ class HomePage extends StatelessWidget {
             title: Text("Task"),
             content: TextField(
               controller: tec_controller,
-              onSubmitted: (value) {
-                controller.addNewTask(
+              onSubmitted: (value) async {
+                await controller.addNewTask(
                   taskModel: TaskModel(
                       taskName: value,
                       taskDate: DateTime.now().toIso8601String(),

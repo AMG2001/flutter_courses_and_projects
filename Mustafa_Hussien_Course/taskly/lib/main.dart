@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:taskly/home_page.dart';
 import 'package:hive_flutter/hive_flutter.dart';
+import 'package:taskly/home_page_controller.dart';
 
 void main() async {
   await Hive.initFlutter();
@@ -23,7 +24,12 @@ class Taskly extends StatelessWidget {
       ),
       title: 'Taskly',
       debugShowCheckedModeBanner: false,
-      home: HomePage(),
+      home: GetBuilder<HomePageController>(
+        init: HomePageController(),
+        builder: (context) {
+          return HomePage();
+        }
+      ),
     );
   }
 }
