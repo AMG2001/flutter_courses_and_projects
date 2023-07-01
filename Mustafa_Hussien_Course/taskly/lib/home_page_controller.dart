@@ -5,7 +5,8 @@ import 'package:hive_flutter/hive_flutter.dart';
 import 'package:taskly/task_model.dart';
 
 class HomePageController extends GetxController {
-  late Box<TaskModel> _tasksBox;
+  late Box<TaskModel> tasksBox;
+  late int lastKey;
   String _key_tasks_box_name = 'tasks_box';
 
   List<TaskModel> tasksList = [];
@@ -14,17 +15,21 @@ class HomePageController extends GetxController {
   void onInit() async {
     Hive.registerAdapter(TaskModelAdapter());
     await Hive.openBox<TaskModel>(_key_tasks_box_name).then((value) async {
-      _tasksBox = value;
+      tasksBox = value;
+      lastKey = tasksBox.keys.last ?? 0;
       await getAllTasks();
     });
     super.onInit();
   }
 
   Future<void> addNewTask({required TaskModel taskModel}) async {
+    taskModel.setTaskKey = lastKey + 1;
     try {
       tasksList.add(taskModel);
-      await _tasksBox.add(taskModel);
-      getAllTasks();
+      await tasksBox.add(taskModel).then((value) {
+        taskModel.setTaskKey = value;
+      });
+      // getAllTasks();
       Get.back();
       update();
     } catch (e) {
@@ -36,12 +41,17 @@ $e\n\n
     }
   }
 
+  Future<void> deleteTaskAtIndex(
+      {required int indexInList, required int keyInLocalStore}) async {
+    tasksList.removeAt(indexInList);
+    update();
+    await tasksBox.delete(keyInLocalStore);
+  }
+
   Future<void> getAllTasks() async {
-    tasksList.clear();
-    _tasksBox.keys.forEach((key) {
+    tasksBox.keys.forEach((key) {
       print('looped key : $key \n');
-      tasksList.add(_tasksBox.getAt(key)!);
-      print(tasksList[key].taskName);
+      tasksList.add(tasksBox.get(key)!);
     });
     update();
   }
@@ -49,14 +59,17 @@ $e\n\n
   Future<void> changeTaskStatus(
       {required bool newStatus, required int index}) async {
     try {
-      print('task status changed');
+      print('index : $index');
+      print(
+          ' tasksList.elementAt(index).isDone ${tasksList.elementAt(index).isDone}');
       tasksList.elementAt(index).isDone = newStatus;
-      await _tasksBox.putAt(
+      await tasksBox.putAt(
           index,
           TaskModel(
-              taskName: _tasksBox.get(index)!.taskName,
-              taskDate: _tasksBox.get(index)!.taskDate,
-              isDone: newStatus));
+              taskName: tasksBox.get(index)!.taskName,
+              taskDate: tasksBox.get(index)!.taskDate,
+              isDone: newStatus,
+              taskKey: tasksBox.get(index)!.taskKey));
       update(['task_object']);
       print('task UI Updated');
     } catch (e) {
@@ -81,29 +94,57 @@ $e\n\n
         return GetBuilder<HomePageController>(
             id: 'task_object',
             builder: (task_controller) {
-              return ListTile(
-                onTap: () async {
-                  await task_controller.changeTaskStatus(
-                      newStatus: !task_controller.tasksList[index].isDone,
-                      index: index);
-                },
-                title: Text(
-                  task_controller.tasksList[index].taskName,
-                  style: TextStyle(
-                      decoration:
-                          task_controller.tasksList[index].isDone == true
-                              ? TextDecoration.lineThrough
-                              : null),
-                ),
-                subtitle: Text(task_controller.tasksList[index].taskDate),
-                trailing: Checkbox(
-                  checkColor: Colors.white,
-                  fillColor: MaterialStateProperty.all<Color>(Colors.red),
-                  value: task_controller.tasksList[index].isDone,
-                  onChanged: (value) async {
-                    await task_controller.changeTaskStatus(
-                        newStatus: value!, index: index);
+              return GestureDetector(
+                child: ListTile(
+                  onLongPress: () {
+                    // Do something here
+                    showMenu(
+                        context: context,
+                        position: RelativeRect.fromLTRB(0, 0, 0, 0),
+                        items: [
+                          PopupMenuItem(
+                            child: Text("Delete"),
+                            onTap: () async {
+                              await task_controller.deleteTaskAtIndex(
+                                  indexInList: index,
+                                  keyInLocalStore:
+                                      task_controller.tasksList[index].taskKey);
+                            },
+                          ),
+                          PopupMenuItem(
+                            child: Text("Update"),
+                            onTap: () async {
+                              await task_controller.deleteTaskAtIndex(
+                                  indexInList: index,
+                                  keyInLocalStore:
+                                      task_controller.tasksList[index].taskKey);
+                            },
+                          ),
+                        ]);
                   },
+                  onTap: () async {
+                    await task_controller.changeTaskStatus(
+                        newStatus: !task_controller.tasksList[index].isDone,
+                        index: index);
+                  },
+                  title: Text(
+                    task_controller.tasksList[index].taskName,
+                    style: TextStyle(
+                        decoration:
+                            task_controller.tasksList[index].isDone == true
+                                ? TextDecoration.lineThrough
+                                : null),
+                  ),
+                  subtitle: Text(task_controller.tasksList[index].taskDate),
+                  trailing: Checkbox(
+                    checkColor: Colors.white,
+                    fillColor: MaterialStateProperty.all<Color>(Colors.red),
+                    value: task_controller.tasksList[index].isDone,
+                    onChanged: (value) async {
+                      await task_controller.changeTaskStatus(
+                          newStatus: value!, index: index);
+                    },
+                  ),
                 ),
               );
             });

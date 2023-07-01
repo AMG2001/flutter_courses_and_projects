@@ -10,7 +10,14 @@ class TaskModel {
   late String taskDate;
   @HiveField(3)
   late bool isDone;
-  
+  @HiveField(4)
+  late int taskKey;
+
+  set setTaskKey(int taskKey) => this.taskKey = taskKey;
+
   TaskModel(
-      {required this.taskName, required this.taskDate, required this.isDone});
+      {required this.taskName,
+      required this.taskDate,
+      required this.isDone,
+      this.taskKey = 1});
 }

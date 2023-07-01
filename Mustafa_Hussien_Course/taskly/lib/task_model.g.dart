@@ -20,19 +20,22 @@ class TaskModelAdapter extends TypeAdapter<TaskModel> {
       taskName: fields[1] as String,
       taskDate: fields[2] as String,
       isDone: fields[3] as bool,
+      taskKey: fields[4] as int,
     );
   }
 
   @override
   void write(BinaryWriter writer, TaskModel obj) {
     writer
-      ..writeByte(3)
+      ..writeByte(4)
       ..writeByte(1)
       ..write(obj.taskName)
       ..writeByte(2)
       ..write(obj.taskDate)
       ..writeByte(3)
-      ..write(obj.isDone);
+      ..write(obj.isDone)
+      ..writeByte(4)
+      ..write(obj.taskKey);
   }
 
   @override

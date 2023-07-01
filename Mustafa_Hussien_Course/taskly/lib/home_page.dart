@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:taskly/home_page_controller.dart';
 import 'package:taskly/task_model.dart';
+import 'package:intl/intl.dart';
 
 class HomePage extends StatelessWidget {
   HomePage({super.key});
@@ -46,7 +47,7 @@ class HomePage extends StatelessWidget {
                 await controller.addNewTask(
                   taskModel: TaskModel(
                       taskName: value,
-                      taskDate: DateTime.now().toIso8601String(),
+                      taskDate: DateFormat.yMMMd().format(DateTime.now()),
                       isDone: false),
                 );
               },
