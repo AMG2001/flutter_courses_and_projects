@@ -1,6 +1,12 @@
+import 'package:coin_app/services/api_service.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
+import 'package:get_it/get_it.dart';
 
-void main() {
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  GetIt.instance.registerSingleton<APIServices>(APIServices());
+  await GetIt.instance.get<APIServices>().initializeAPIServices();
   runApp(const MyApp());
 }
 

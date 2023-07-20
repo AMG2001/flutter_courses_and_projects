@@ -1,0 +1,4 @@
+{
+    "base_url":"https://api.coingecko.com/api/v3/",
+    "request_bitcoin":"https://api.coingecko.com/api/v3/coins/bitcoin"
+}
