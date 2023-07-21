@@ -1,16 +1,12 @@
-# coin_app
+# Dart & Flutter | The Complete Flutter Development Course
+- course link : https://www.udemy.com/course/dart-flutter-the-complete-flutter-development-course/
 
-A new Flutter project.
-
-## Getting Started
-
-This project is a starting point for a Flutter application.
-
-A few resources to get you started if this is your first Flutter project:
-
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
-
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+## Section 7 - CoinCap App .
+- topics that covered in this topic :
+1. Dio http client handler package.
+2. FutureBuilder Widget .
+3. how to handle api requests .
+4. how to store your api_key in X.json file and call it inside app to provide security .
+5. get_it package and signleton Design pattern .
+- App UI/UX :
+<img src="https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExenA1OHplOGU4dWhkaHJoaW8yNG11YWF2aXp4b3JwNjJoOHNlejBhNiZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/P4Kg6BN9ag5demBQwq/giphy.gif"/>
