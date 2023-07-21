@@ -1,3 +1,4 @@
+import 'package:coin_app/pages/details_page.dart';
 import 'package:coin_app/services/api_service.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -25,10 +26,19 @@ class HomePage extends StatelessWidget {
                         SizedBox(
                           height: 36,
                         ),
-                        Image.network(
-                          api_controller.crypto_data['image'],
-                          width: MediaQuery.sizeOf(context).width * .2,
-                          fit: BoxFit.cover,
+                        GestureDetector(
+                          onDoubleTap: () {
+                            Navigator.push(context, MaterialPageRoute(
+                              builder: (context) {
+                                return DetailsPage();
+                              },
+                            ));
+                          },
+                          child: Image.network(
+                            api_controller.crypto_data['image'],
+                            width: MediaQuery.sizeOf(context).width * .2,
+                            fit: BoxFit.cover,
+                          ),
                         ),
                         SizedBox(
                           height: 36,
@@ -50,13 +60,19 @@ class HomePage extends StatelessWidget {
                           height: 36,
                         ),
                         Container(
+                          margin: EdgeInsets.all(16),
+                          decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(16),
+                              color: Colors.black.withOpacity(.5)),
                           padding: EdgeInsets.all(24),
                           height: MediaQuery.sizeOf(context).height * .4,
                           width: MediaQuery.sizeOf(context).width,
                           child: SelectableText(
                             "${api_controller.crypto_data['description']}",
                             style: TextStyle(
-                                fontSize: 18, fontWeight: FontWeight.w500),
+                                color: Colors.white,
+                                fontSize: 18,
+                                fontWeight: FontWeight.w500),
                           ),
                         )
                       ],
