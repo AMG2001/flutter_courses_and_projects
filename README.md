@@ -12,5 +12,6 @@ this repo contain all projects that implemented with courses i have taken while 
 2. FutureBuilder Widget .
 3. how to handle api requests .
 4. how to store your api_key in X.json file and call it inside app to provide security .
+5. get_it package and signleton Design pattern .
 - App UI/UX :
 <img src="https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExenA1OHplOGU4dWhkaHJoaW8yNG11YWF2aXp4b3JwNjJoOHNlejBhNiZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/P4Kg6BN9ag5demBQwq/giphy.gif"/>
