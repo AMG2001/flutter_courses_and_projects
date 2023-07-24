@@ -2,13 +2,18 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 class HomePageController extends GetxController {
+  late bool searchPerformed;
   @override
   void onInit() {
-    print('Home Page Controller init ');
+    searchPerformed = false;
     super.onInit();
   }
 
-  Widget SearchResult = Center(
-    child: Text("there is not weather , start search now !!"),
-  );
+  void changeSearchPerformedState() {
+    searchPerformed = true;
+    update();
+  }
+
+  
+  
 }
