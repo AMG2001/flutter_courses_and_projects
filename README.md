@@ -1,7 +1,5 @@
-# flutter_courses_and_projects
-this repo contain all projects that implemented with courses i have taken while learning flutter
-
-
+# Flutter Courses Projects
+this repo contain all projects that implemented with courses while learning journey
 
 # Dart & Flutter | The Complete Flutter Development Course
 - course link : https://www.udemy.com/course/dart-flutter-the-complete-flutter-development-course/
