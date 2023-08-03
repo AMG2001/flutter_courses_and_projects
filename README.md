@@ -23,29 +23,35 @@ this repo contain all projects that implemented with courses while learning jour
     <tr>
       <th>## Section 5 Random Color changer .</th>
       <th>## Section 6 Dice Roller .</th>
-      <th>Header 3</th>
+      <th>## Section 7 XO Game .</th>
     </tr>
   </thead>
   <tbody>
     <tr >
-      <td style=" text-align: center;">
-      - what i learned in :
-      1. how to implement random in Dart .
-      2. How to use Stateful Widget and setState( ).  
+      <td>
+      <p>- what i learned in :</p>
+      <p>1. how to implement random in Dart .</p>
+      <p>2. How to use Stateful Widget and setState( ). </p> 
       </td>
       <td>   
-      - what i learned in :
-      1. how to implement random in Dart .
-      2. How to change image path using List<String> paths.
-      3. How to use Stateful Widget and setState( ).  </td>
-      <td>Row 1, Cell 3</td>
+      <p>- what i learned in :</p>
+      <p>1. how to implement random in Dart .</p>
+      <p>2. How to change image path using List<String> paths.</p>
+      <p>3. How to use Stateful Widget and setState( ). </p>
+      </td>
+      <td>   
+      <p>- what i learned in :</p>
+      <p>1. How to use enums in Dart.</p>
+      <p>2. How to handle XO Game Logic</p>
+      <p>3. How to work with list of Widgets</p>
+      </td>
     </tr>
     <tr>
       <td>
          <img src="https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExbm01Z3NhbjB3NTBvN2hoNWs4eWM3ZGxjb3huZzdwM3p5Nm04NGdvYiZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/ntDQobvRE6iwJkjeYE/giphy.gif" />
       </td>
       <td>  <img src="https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExc3JqOXAzN3pwbDBiYzRoY3cwcWM3dzgxcGtiaDBrbHpxcG41Z3pmOSZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/Ljbs6pGRSPoJXoYQxb/giphy.gif" /></td>
-      <td>Row 2, Cell 3</td>
+       <td>  <img src="https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExYWtucXh2MW83ZDVwdmk5cmN1a3M5cmphNzdrOXM0MmQyazZhYjdhbyZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/J1l7OLbhighUQCtUJs/giphy.gif" /></td>
     </tr>
   </tbody>
 </table>
