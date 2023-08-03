@@ -94,8 +94,8 @@ this repo contain all projects that implemented with courses while learning jour
    <thead>
     <tr>
       <th>## Section 8 Scratch Win Game .</th>
-      <th>## Section 6 Dice Roller .</th>
-      <th>## Section 7 XO Game .</th>
+      <th>## Section 9 Spanish Audio .</th>
+      <th>## Section 10 Camera & Gesture .</th>
     </tr>
   </thead>
   <tbody>
