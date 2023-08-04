@@ -59,36 +59,41 @@ class _HomePageState extends State<HomePage> {
             ? Center(
                 child: CircularProgressIndicator(color: Colors.deepPurple),
               )
-            : ReorderableListView.builder(
-                // key: Key('reorderable-list'),
-                onReorder: (oldIndex, newIndex) {
-                  final item = comments[oldIndex];
-                  comments.removeAt(oldIndex);
-                  comments.insert(newIndex, item);
-                },
-                itemCount: comments.length,
-                itemBuilder: (context, index) {
-                  return ListTile(
-                    key: Key(comments[index]['name']),
-                    leading: Icon(Icons.comment_bank_outlined),
-                    title: Text(comments[index]['name']),
-                    subtitle: Column(
-                      mainAxisSize: MainAxisSize.max,
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Text(comments[index]['email']),
-                        SizedBox(
-                          height: 12,
-                        ),
-                        Text(
-                          comments[index]['body'],
-                          maxLines: 2,
-                          overflow: TextOverflow.ellipsis,
-                        ),
-                      ],
-                    ),
-                  );
-                },
-              ));
+            : CustomReordableListView(list: comments));
+  }
+
+  Widget CustomReordableListView({required List<dynamic> list}) {
+    return ReorderableListView.builder(
+      onReorder: (oldIndex, newIndex) {
+        final item = list[oldIndex];
+        list.removeAt(oldIndex);
+        list.insert(newIndex > oldIndex ? newIndex - 1 : newIndex, item);
+      },
+      itemCount: list.length,
+      itemBuilder: (context, index) {
+        // TODO add this in the widget that you will build :
+        // key: Key(index.toString()),
+        return ListTile(
+          key: Key(index.toString()),
+          leading: Icon(Icons.comment_bank_outlined),
+          title: Text(list[index]['name']),
+          subtitle: Column(
+            mainAxisSize: MainAxisSize.max,
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Text(list[index]['email']),
+              SizedBox(
+                height: 12,
+              ),
+              Text(
+                list[index]['body'],
+                maxLines: 2,
+                overflow: TextOverflow.ellipsis,
+              ),
+            ],
+          ),
+        );
+      },
+    );
   }
 }
