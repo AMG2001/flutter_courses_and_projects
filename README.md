@@ -95,7 +95,7 @@ this repo contain all projects that implemented with courses while learning jour
     <tr>
       <th>## Section 8 Scratch Win Game .</th>
       <th>## Section 9 Spanish Audio .</th>
-      <th>## Section 10 Camera & Gesture .</th>
+      <th>## Section 12 API .</th>
     </tr>
   </thead>
   <tbody>
@@ -109,14 +109,11 @@ this repo contain all projects that implemented with courses while learning jour
       <td>   
       <p>- what i learned in :</p>
       <p>1. how to use audio in Flutter .</p>
-<!--       <p>2. How to change image path using List<String> paths.</p> -->
-<!--       <p>3. How to use Stateful Widget and setState( ). </p> -->
       </td>
       <td>   
       <p>- what i learned in :</p>
-      <p>1. How to use enums in Dart.</p>
-      <p>2. How to handle XO Game Logic</p>
-      <p>3. How to work with list of Widgets</p>
+      <p>1. How to use Dio.</p>
+      <p>2. How to handle Reordable Listview Widget</p>
       </td>
     </tr>
     <tr>
@@ -124,7 +121,7 @@ this repo contain all projects that implemented with courses while learning jour
          <img src="https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExbDN6a3Y5NzduZDNrMDBtZzZqMWpkOXVqeDM0bTF0dHBkZDFoYmViYSZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/MWmjqfBPBLKxs76lON/giphy.gif" />
       </td>
       <td>  <img src="https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExN3R0b3ZwcDY5eGVhaWN6YnJqOXYxdm9pMDh6MTFva3dtcHZlZ3IxNCZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/hCkODyrHTZBO9NnK2P/giphy.gif" /></td>
-       <td>  <img src="https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExYWtucXh2MW83ZDVwdmk5cmN1a3M5cmphNzdrOXM0MmQyazZhYjdhbyZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/J1l7OLbhighUQCtUJs/giphy.gif" /></td>
+       <td>  <img src="https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExdHc1M2puZWk2d2p0cmw4OWx6c2drZjgzc3lxOXR1NHFldzlicGhsayZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/ZOGY6gJbQ5t51nJ8CO/giphy.gif" /></td>
     </tr> 
   </tbody>
 </table>
