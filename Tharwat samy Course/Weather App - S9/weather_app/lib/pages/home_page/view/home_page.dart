@@ -11,63 +11,78 @@ class HomePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     DeviceDimensions.initDeviceDimensions();
-    return Scaffold(
-      appBar: AppBar(
-        title: Text("Weather"),
-        actions: [
-          IconButton(
-              onPressed: () {
-                Get.to(() => SearchPage(),
-                    transition: Transition.rightToLeft,
-                    duration: Duration(milliseconds: 750),
-                    curve: Curves.easeInOutCubic);
-              },
-              icon: Icon(Icons.search))
-        ],
-      ),
-      body: GetBuilder<HomePageController>(
+    return GetBuilder<HomePageController>(
         init: HomePageController(),
         builder: (controller) {
-          return SafeArea(
-            child: Container(
-              child: controller.searchPerformed == false
-                  ? Center(
-                      child: Text("there is not weather , start search now !!"),
-                    )
-                  : Column(
-                      children: [
-                        SizedBox(
-                          height: 24,
-                        ),
-                        Text(WeatherApi.instance.getCityName()),
-                        SizedBox(
-                          height: 24,
-                        ),
-                        Text(""),
-                        SizedBox(
-                          height: 24,
-                        ),
-                        Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+          return Scaffold(
+              appBar: AppBar(
+                backgroundColor: controller.pageBackgroundColor,
+                title: Text("Weather"),
+                actions: [
+                  IconButton(
+                      onPressed: () {
+                        Get.to(() => SearchPage(),
+                            transition: Transition.rightToLeft,
+                            duration: Duration(milliseconds: 750),
+                            curve: Curves.easeInOutCubic);
+                      },
+                      icon: Icon(Icons.search))
+                ],
+              ),
+              body: SafeArea(
+                child: Container(
+                  color: controller.pageBackgroundColor,
+                  child: controller.searchPerformed == false
+                      ? Center(
+                          child: Text(
+                              "there is not weather , start search now !!"),
+                        )
+                      : Column(
+                          mainAxisAlignment: MainAxisAlignment.center,
                           children: [
-                            Image.asset('assets/images/clear.png'),
-                            Text(WeatherApi.instance.getTemp()),
-                            Column(
+                            SizedBox(
+                              height: 24,
+                            ),
+                            Text(
+                              WeatherApi.instance.getCityName(),
+                              style: TextStyle(fontSize: 24),
+                            ),
+                            SizedBox(
+                              height: 24,
+                            ),
+                            Text(""),
+                            SizedBox(
+                              height: 24,
+                            ),
+                            Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                               children: [
-                                Text(
-                                    "Max temp : ${WeatherApi.instance.getMaxTemp()}"),
-                                Text(
-                                    "Min temp : ${WeatherApi.instance.getMinTemp()}")
+                                Image.asset(controller.getImage(
+                                    weatherStateName:
+                                        WeatherApi.instance.getWeatherState())),
+                                Text(WeatherApi.instance.getTemp()),
+                                Column(
+                                  children: [
+                                    Text(
+                                        "Max temp : ${WeatherApi.instance.getMaxTemp()}"),
+                                    Text(
+                                        "Min temp : ${WeatherApi.instance.getMinTemp()}")
+                                  ],
+                                )
                               ],
+                            ),
+                            SizedBox(
+                              height: 24,
+                            ),
+                            Text(
+                              WeatherApi.instance.getWeatherState(),
+                              style: TextStyle(
+                                  fontSize: 24, fontWeight: FontWeight.w500),
                             )
                           ],
-                        )
-                      ],
-                    ),
-            ),
-          );
-        },
-      ),
-    );
+                        ),
+                ),
+              ));
+        });
   }
 }

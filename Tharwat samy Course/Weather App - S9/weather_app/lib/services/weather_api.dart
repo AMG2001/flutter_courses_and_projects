@@ -3,6 +3,8 @@ import 'package:get/get.dart';
 import 'package:weather_app/pages/home_page/controller/home_page_controller.dart';
 
 class WeatherApi {
+  String _base_url = 'http://api.weatherapi.com/v1';
+
   void setApiKey({required String api_key}) {
     _apiKey = api_key;
   }
@@ -22,7 +24,7 @@ class WeatherApi {
 
   Future<void> getCityData({required String cityName}) async {
     String request =
-        'https://api.openweathermap.org/data/2.5/weather?q=${cityName}&appid=${_apiKey}';
+        'http://api.weatherapi.com/v1/current.json?key=${_apiKey}&q=${cityName}';
     print('request is : $request');
     await _dio.get(request).then((response) {
       cityData_Map = {
@@ -34,6 +36,7 @@ class WeatherApi {
       };
       print('city data in map : $cityData_Map');
     });
+    homePageController.changeThemeColor(weatherStateName: getWeatherState());
     homePageController.changeSearchPerformedState();
     Get.back();
   }

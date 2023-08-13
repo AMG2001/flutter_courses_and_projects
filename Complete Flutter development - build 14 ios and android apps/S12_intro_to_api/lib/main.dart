@@ -6,7 +6,7 @@ void main() {
 }
 
 class MyApp extends StatelessWidget {
-  const MyApp({super.key});
+  const MyApp({Key? key}) : super(key: key); // Updated to Key? key
 
   // This widget is the root of your application.
   @override
@@ -22,7 +22,7 @@ class MyApp extends StatelessWidget {
 }
 
 class HomePage extends StatefulWidget {
-  const HomePage({super.key});
+  const HomePage({Key? key}) : super(key: key); // Updated to Key? key
 
   @override
   State<HomePage> createState() => _HomePageState();
@@ -32,6 +32,7 @@ class _HomePageState extends State<HomePage> {
   Dio dio = Dio();
   List<Map<String, dynamic>> comments = [];
   bool dataFetched = false;
+
   @override
   void initState() {
     if (dataFetched == false) {
@@ -63,37 +64,92 @@ class _HomePageState extends State<HomePage> {
   }
 
   Widget CustomReordableListView({required List<dynamic> list}) {
-    return ReorderableListView.builder(
-      onReorder: (oldIndex, newIndex) {
-        final item = list[oldIndex];
-        list.removeAt(oldIndex);
-        list.insert(newIndex > oldIndex ? newIndex - 1 : newIndex, item);
-      },
+    return ListView.builder(
       itemCount: list.length,
       itemBuilder: (context, index) {
-        // TODO add this in the widget that you will build :
-        // key: Key(index.toString()),
-        return ListTile(
-          key: Key(index.toString()),
-          leading: Icon(Icons.comment_bank_outlined),
-          title: Text(list[index]['name']),
-          subtitle: Column(
-            mainAxisSize: MainAxisSize.max,
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Text(list[index]['email']),
-              SizedBox(
-                height: 12,
+        return CustomPopupMenuWidget(
+            publicContext: context,
+            child: ListTile(
+              key: Key(index.toString()),
+              leading: Icon(Icons.comment_bank_outlined),
+              title: Text(list[index]['name']),
+              subtitle: Column(
+                mainAxisSize: MainAxisSize.max,
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text(list[index]['email']),
+                  SizedBox(
+                    height: 12,
+                  ),
+                  Text(
+                    list[index]['body'],
+                    maxLines: 2,
+                    overflow: TextOverflow.ellipsis,
+                  ),
+                ],
               ),
-              Text(
-                list[index]['body'],
-                maxLines: 2,
-                overflow: TextOverflow.ellipsis,
-              ),
+            ),
+            optionsTitles: [
+              'Action 1',
+              "Action 2",
+              "Action 3"
             ],
-          ),
-        );
+            functions: [
+              () {
+                print('Action 1');
+              },
+              () {
+                print('Action 2');
+              },
+              () {
+                print('Action 3');
+              }
+            ]);
       },
     );
   }
+}
+
+Widget CustomPopupMenuWidget(
+    {required Widget child,
+    required BuildContext publicContext,
+    required List<String> optionsTitles,
+    required List<Function()> functions}) {
+  Offset tapPosition = Offset.zero; // Initialize tapPosition
+  List<PopupMenuEntry<String>> popupMenuActions = [];
+  for (int i = 0; i < optionsTitles.length; i++) {
+    popupMenuActions.add(
+      PopupMenuItem(
+        value: '${optionsTitles[i]}',
+        child: Text('${optionsTitles[i]}'),
+        onTap: () {
+          functions[i]();
+        },
+      ),
+    );
+  }
+
+  return StatefulBuilder(builder: (context, setState) {
+    return GestureDetector(
+        onTapDown: (TapDownDetails details) {
+          setState(() {
+            tapPosition = details.globalPosition; // Directly use globalPosition
+          });
+        },
+        onLongPress: () async {
+          final RenderObject? overlay =
+              Overlay.of(publicContext)?.context.findRenderObject();
+          final result = await showMenu(
+              context: publicContext,
+              // Show the context menu at the tap location
+              position: RelativeRect.fromRect(
+                  Rect.fromLTWH(tapPosition.dx, tapPosition.dy, 30, 30),
+                  Rect.fromLTWH(0, 0, overlay!.paintBounds.size.width,
+                      overlay.paintBounds.size.height)),
+
+              // set a list of choices for the context menu
+              items: popupMenuActions);
+        },
+        child: child);
+  });
 }
